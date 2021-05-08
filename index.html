@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Display bitch</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type='module' src="../scripts/main.js" charset="utf-8"></script>
+
+  </head>
+  <body>
+      <header id='commands'>
+        <!-- bloque contenedor de los comandos del programa, como el algoritmo
+        a utilizar, longitud del array, velocidad de reproduccion -->
+        <h2>Choose your type</h2>
+        <select id="sortAlgos">
+          <option value="bubbleSort"> Bubble </option>
+          <option value="selectionSort"> Selection </option>
+          <option value="mergeSort"> Merge </option>
+        </select>
+        <button id='sortBtn' class="btn" >Sort</button>
+        <button id="shuffleBtn" class="btn">shuffle</button>
+
+      </header>
+      <div id="display">
+      </div>
+  </body>
+</html>
