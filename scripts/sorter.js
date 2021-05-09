@@ -90,14 +90,24 @@ class Sorter {
     while (j < r.length) {
       outArr[k++] = r[j++];
     }
+    await this.changeSomeValues(outArr);
     if (outArr.length == this.nl.list.length) {
-      this.changeAllValues(outArr);
       this.nl.allCompared();
     }
     return outArr;
   }
-  rearangeDisplay(arr) {
-    
+  async changeSomeValues(newValues) {
+    let min = Infinity,
+        max = 0;
+    for (var i = 0; i < newValues.length; i++) {
+      if (newValues[i].id < min) { min = newValues[i].id}
+      if (newValues[i].id > max) { max = newValues[i].id}
+    }
+    let k = 0;
+    for (var j = min; j <= max; j++) {
+      this.nl.list[j].updateValue(newValues[k++].value);
+      await this.sleep()
+    }
   }
   changeAllValues(newValues) {
     for (var i = 0; i < this.nl.list.length; i++) {

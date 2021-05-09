@@ -29,7 +29,7 @@ document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
 let printArr = (arr) => {
   let strOut = '';
   for (var i = 0; i < arr.length; i++) {
-    strOut += `${arr[i].index} : ${arr[i].value} `
+    strOut += `${arr[i].id} : ${arr[i].value} `
 
   }
   console.log(strOut);

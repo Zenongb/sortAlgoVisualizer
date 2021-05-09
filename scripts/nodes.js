@@ -107,7 +107,7 @@ class Node {
 	This class contains the value, index, HTML element that comprises it, and the  methods
 	to handle interactions between the sorting algorithms and the HTML element itself
 	*/
-	constructor(value, index, parent) {
+	constructor(value, id, parent) {
 
 		this.value = value;
 		this.id = id;
