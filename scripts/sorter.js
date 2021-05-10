@@ -40,7 +40,7 @@ class Sorter {
   }
   //######################################################################
   //######################################################################
-  async selectionSort() {
+  async insertionSort() {
     let temp, j, needSort = false;
     for (let i = 1; i < this.nl.list.length; i++) {
       if (await this.biggerThan(this.nl.list[i-1], this.nl.list[i])) {
@@ -56,6 +56,25 @@ class Sorter {
       needSort = false
     }
     this.nl.allCompared();
+  }
+  //######################################################################
+  //######################################################################
+  
+  async  selectionSort() {
+    let min = this.nl.list[0], j = 0;
+
+    while (j < this.nl.list.length) {
+      for (var i = j+1; i < this.nl.list.length; i++) {
+        if (await this.biggerThan(min, this.nl.list[i])) {
+          min = this.nl.list[i];
+          min.selected();
+        }
+      }
+      await this.sleep();
+      this.swap(this.nl.list[j], min);
+      min.inItsPlace();
+      min = this.nl.list[j++];
+    }
   }
 
   //######################################################################

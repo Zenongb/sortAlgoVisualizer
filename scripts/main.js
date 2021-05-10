@@ -18,8 +18,9 @@ const selectAlgo = () => {
     case 'selectionSort':
       return sorter.selectionSort();
     case 'mergeSort':
-    console.log('switch works');
       return mergeCall();
+    case  'insertSort':
+      return sorter.insertionSort();
   }
 }
 
