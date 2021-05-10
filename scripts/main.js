@@ -13,6 +13,8 @@ const shuffleCall = () => {
 const selectAlgo = () => {
   let selector = document.getElementById('sortAlgos');
   switch (selector.value) {
+    case 'quickSort':
+      return quickCall()
     case 'bubbleSort':
       return sorter.bubbleSort();
     case 'selectionSort':
@@ -27,6 +29,15 @@ const selectAlgo = () => {
 document.querySelector('#sortBtn').addEventListener('click', selectAlgo);
 document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
 
+const quickCall = async () => {
+  await sorter.quickSort(nl.list, 0, nl.list.length -1);
+}
+const mergeCall = async () => {
+  let arr = nl.generateArr();
+  printArr(arr);
+  arr = await sorter.mergeSort(arr);
+  printArr(arr);
+}
 let printArr = (arr) => {
   let strOut = '';
   for (var i = 0; i < arr.length; i++) {
@@ -34,10 +45,4 @@ let printArr = (arr) => {
 
   }
   console.log(strOut);
-}
-const mergeCall = async () => {
-  let arr = nl.generateArr();
-  printArr(arr);
-  arr = await sorter.mergeSort(arr);
-  printArr(arr);
 }

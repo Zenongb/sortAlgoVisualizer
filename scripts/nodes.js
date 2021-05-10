@@ -8,10 +8,14 @@ class NodeList {
 	constructor(parent, length, random=false) {
 
 		this.parent = parent; //parent is HTML element
+		this.maxRange = 350;
+		this.minRange = 40;
 		this.generateNodeList(length, random);
-
+		this.parent.style.height = `${this.maxRange +50}px`;
 
 	}
+
+
 
 	//####################################################################
 	//####################################################################
@@ -35,22 +39,18 @@ class NodeList {
 	createRandomArray(length) {
 		// crea un array con enteros al azar menores
 		// la variable range
-		let maxRange = 350,
-			minRange = 40;
 		var arr = new Array(length);
 		for (var i = 0; i < arr.length; i++) {
-			arr[i] = Math.floor(Math.random() * (maxRange - minRange) + minRange);
+			arr[i] = Math.floor(Math.random() * (this.maxRange - this.minRange) + this.minRange);
 		}
 		return arr;
 	}
 	createLinearArray(length) {
-		let maxRange = 350,
-			minRange = 40,
-			arr = new Array(length),
-			flow = minRange;
+		let arr = new Array(length),
+			flow = this.minRange;
 		for (var i = 0; i < arr.length; i++) {
 			arr[i] = flow;
-			flow += Math.floor((maxRange - minRange) / length);
+			flow += Math.floor((this.maxRange - this.minRange) / length);
 		}
 		return arr;
 	}
