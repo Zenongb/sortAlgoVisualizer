@@ -36,3 +36,6 @@ header {
 .compared {
 	background-color: green;
 }
+.selected {
+	background-color: cyan;
+}

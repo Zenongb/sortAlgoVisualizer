@@ -40,7 +40,7 @@ class Sorter {
   }
   //######################################################################
   //######################################################################
-  async selectionSort() {
+  async insertionSort() {
     let temp, j, needSort = false;
     for (let i = 1; i < this.nl.list.length; i++) {
       if (await this.biggerThan(this.nl.list[i-1], this.nl.list[i])) {
@@ -57,7 +57,35 @@ class Sorter {
     }
     this.nl.allCompared();
   }
+  //######################################################################
+  //######################################################################
+  
+  async  selectionSort() {
+    let min = await this.isMin(this.nl.list[0]), 
+        j = 0;
 
+    while (j < this.nl.list.length) {
+      for (var i = j+1; i < this.nl.list.length; i++) {
+        if (await this.biggerThan(min, this.nl.list[i])) {
+          min.unSelect();
+          min = await this.isMin(this.nl.list[i]);
+          
+        }
+      }
+      await this.sleep();
+      this.swap(this.nl.list[j], min);
+      this.nl.list[j].inItsPlace();
+      await this.sleep();
+      min.unSelect();
+      min = await this.isMin(this.nl.list[++j]);
+    }
+  }
+
+  async isMin(n) {
+    n.selected()
+    await this.sleep()
+    return n
+  }
   //######################################################################
   //######################################################################
 
@@ -90,23 +118,34 @@ class Sorter {
     while (j < r.length) {
       outArr[k++] = r[j++];
     }
-    let ord = await this.updateNodes(outArr);
+
+    let range = this.getRange(outArr);
+    this.switchState(range, true);
+    await this.changeSomeValues(outArr, range);
+    this.switchState(range, false);
+
+
     if (outArr.length == this.nl.list.length) {
       this.nl.allCompared();
     }
     await this.wereCompared(ord);
     return outArr;
   }
-  async updateNodes(newValues) {
-    // updates the state & value of the nodes that where sorted.
-    // uses the id to see the relative positions of the values changed.
+
+
+  getRange(arr) {
     let min = Infinity,
         max = 0;
-    for (var i = 0; i < newValues.length; i++) {
-      if (newValues[i].id < min) { min = newValues[i].id }
-      if (newValues[i].id > max) { max = newValues[i].id }      
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].id < min) { min = arr[i].id}
+      if (arr[i].id > max) { max = arr[i].id}
     }
-    let k = 0;
+    return [min, max];
+  }
+  async changeSomeValues(newValues, range) {
+    let k = 0,
+        min = range[0],
+        max = range[1];
     for (var j = min; j <= max; j++) {
       this.nl.list[j].updateValue(newValues[k++].value);
       this.nl.list[j].comparing();
@@ -114,13 +153,17 @@ class Sorter {
     }
     return [min, max];
   }
-  async wereCompared(ord) {
-    for (var i = ord[0]; i <= ord[1]; i++) {
-      this.nl.list[i].compared();
-    }
-    await this.sleep();
+
+  switchState(range, comparing) {
+    let min = range[0],
+        max = range[1];
+        for (var i = min; i <= max; i++) {
+          if (comparing) {this.nl.list[i].comparing()}
+          else {this.nl.list[i].compared();}
+        }
   }
-  
+
+
   //######################################################################
   //######################################################################
 
