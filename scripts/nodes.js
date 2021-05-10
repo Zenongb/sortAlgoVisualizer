@@ -131,6 +131,10 @@ class Node {
 	}
 	reUse() {
 		this.HTMLElement.classList.remove('compared');
+		this.HTMLElement.classList.remove('comparing');
+		this.HTMLElement.classList.add('idle');
+
+
 	}
 
 	changeStatus(oldStatus, newStatus){
