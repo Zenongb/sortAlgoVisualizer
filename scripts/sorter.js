@@ -90,38 +90,40 @@ class Sorter {
     while (j < r.length) {
       outArr[k++] = r[j++];
     }
-    await this.changeSomeValues(outArr);
+    let ord = await this.updateNodes(outArr);
     if (outArr.length == this.nl.list.length) {
       this.nl.allCompared();
     }
+    await this.wereCompared(ord);
     return outArr;
   }
-  async changeSomeValues(newValues) {
+  async updateNodes(newValues) {
+    // updates the state & value of the nodes that where sorted.
+    // uses the id to see the relative positions of the values changed.
     let min = Infinity,
         max = 0;
     for (var i = 0; i < newValues.length; i++) {
-      if (newValues[i].id < min) { min = newValues[i].id}
-      if (newValues[i].id > max) { max = newValues[i].id}
+      if (newValues[i].id < min) { min = newValues[i].id }
+      if (newValues[i].id > max) { max = newValues[i].id }      
     }
     let k = 0;
     for (var j = min; j <= max; j++) {
       this.nl.list[j].updateValue(newValues[k++].value);
+      this.nl.list[j].comparing();
       await this.sleep()
     }
+    return [min, max];
   }
-  changeAllValues(newValues) {
-    for (var i = 0; i < this.nl.list.length; i++) {
-      this.nl.list[i].updateValue(newValues[i].value);
+  async wereCompared(ord) {
+    for (var i = ord[0]; i <= ord[1]; i++) {
+      this.nl.list[i].compared();
     }
+    await this.sleep();
   }
+  
   //######################################################################
   //######################################################################
 
-  updateWholeList (start, oldArr) {
-      for (var i = 0; i < oldArr.length; i++) {
-        this.getNodeByIndex(start + i).updateValue(oldArr[i].value);
-      }
-  }
 
 
   swap(n1, n2){
