@@ -127,15 +127,19 @@ class Node {
 		this.changeStatus('comparing', 'idle');
 	}
 	inItsPlace () {
+		this.HTMLElement.classList.remove('selected');
 		this.HTMLElement.classList.add('compared');
 	}
 	reUse() {
 		this.HTMLElement.classList.remove('compared');
+		this.HTMLElement.classList.remove('selected');
 	}
 	selected() {
 		this.changeStatus('idle', 'selected');
 	}
-	
+	unSelect() {
+		this.changeStatus('selected', 'idle');
+	}
 
 	changeStatus(oldStatus, newStatus){
 		this.HTMLElement.classList.remove(oldStatus);
