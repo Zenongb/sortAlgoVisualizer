@@ -139,6 +139,7 @@ class Node {
 	}
 	unSelect() {
 		this.changeStatus('selected', 'idle');
+
 	}
 
 	changeStatus(oldStatus, newStatus){

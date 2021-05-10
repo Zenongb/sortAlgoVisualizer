@@ -118,15 +118,20 @@ class Sorter {
     while (j < r.length) {
       outArr[k++] = r[j++];
     }
+
     let range = this.getRange(outArr);
     this.switchState(range, true);
     await this.changeSomeValues(outArr, range);
     this.switchState(range, false);
+
+
     if (outArr.length == this.nl.list.length) {
       this.nl.allCompared();
     }
+    await this.wereCompared(ord);
     return outArr;
   }
+
 
   getRange(arr) {
     let min = Infinity,
@@ -143,9 +148,12 @@ class Sorter {
         max = range[1];
     for (var j = min; j <= max; j++) {
       this.nl.list[j].updateValue(newValues[k++].value);
+      this.nl.list[j].comparing();
       await this.sleep()
     }
+    return [min, max];
   }
+
   switchState(range, comparing) {
     let min = range[0],
         max = range[1];
@@ -155,14 +163,10 @@ class Sorter {
         }
   }
 
+
   //######################################################################
   //######################################################################
 
-  updateWholeList (start, oldArr) {
-      for (var i = 0; i < oldArr.length; i++) {
-        this.getNodeByIndex(start + i).updateValue(oldArr[i].value);
-      }
-  }
 
 
   swap(n1, n2){
