@@ -128,7 +128,6 @@ class Sorter {
     if (outArr.length == this.nl.list.length) {
       this.nl.allCompared();
     }
-    await this.wereCompared(ord);
     return outArr;
   }
 
@@ -163,6 +162,55 @@ class Sorter {
         }
   }
 
+
+  //######################################################################
+  //######################################################################
+
+  async partition(arr, start, end) {
+    let pivotIndex = start, 
+        pivot = arr[pivotIndex];
+    pivot.selected();
+    while (start < end) {
+      // find a value greater than pivot
+      while (((await this.biggerThan(pivot, arr[start])) || (pivot.value == arr[start].value)) && (start < end)) {
+        //console.log(`changing start: ${start} e:${end}`);
+        start++;
+      }
+      //find a value smaller than pivot
+      while (await this.biggerThan(arr[end], pivot))  {
+        //console.log(`s:${start} changing end:${end}`);
+        end--;
+      }
+      //switch the values around if the indices havent crossed
+      if (start < end) {
+        console.log(`swapping ${arr[start].value} => ${arr[end].value}`);
+        await this.prettySwap(arr[start], arr[end]);
+      }
+    }
+    // switch the position of the pivot to be in the pos end index
+    pivot.unSelect();
+    this.prettySwap(pivot, arr[end]);
+    return end; 
+  }
+
+  async quickSort(arr, start, end) {
+    if (start < end) {
+      let pIndex = await this.partition(arr, start, end);
+      await this.quickSort(arr, start, pIndex -1);
+      await this.quickSort(arr, pIndex + 1, end);
+    }
+  }
+  
+  async prettySwap(n1, n2) {
+    n1.comparing();
+    n2.comparing();
+    await this.sleep();
+    this.swap(n1, n2);
+    n1.compared();
+    n2.compared();
+    await this.sleep();
+
+  }  
 
   //######################################################################
   //######################################################################
