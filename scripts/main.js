@@ -1,15 +1,17 @@
 import {Node, NodeList} from '/scripts/nodes.js';
 import {Sorter} from '/scripts/sorter.js'
 
+// init orders
 const parent = document.getElementById('display');
-var nl = new NodeList(parent, 20);
-var sorter = new Sorter(60, nl);
+
+   
+
+let nl = new NodeList(parent, 20),
+    sorter = new Sorter(60, nl);
 
 
 
-const shuffleCall = () => {
-  nl.shuffleList();
-}
+// sort selection & execution functions
 const selectAlgo = () => {
   let selector = document.getElementById('sortAlgos');
   switch (selector.value) {
@@ -25,24 +27,35 @@ const selectAlgo = () => {
       return sorter.insertionSort();
   }
 }
-
-document.querySelector('#sortBtn').addEventListener('click', selectAlgo);
-document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
-
 const quickCall = async () => {
   await sorter.quickSort(nl.list, 0, nl.list.length -1);
+  if (nl.isSorted()) { nl.allCompared() }
 }
 const mergeCall = async () => {
   let arr = nl.generateArr();
-  printArr(arr);
   arr = await sorter.mergeSort(arr);
-  printArr(arr);
 }
-let printArr = (arr) => {
-  let strOut = '';
-  for (var i = 0; i < arr.length; i++) {
-    strOut += `${arr[i].id} : ${arr[i].value} `
 
-  }
-  console.log(strOut);
+
+// Array edit functions
+const shuffleCall = () => {
+  nl.shuffleList();
 }
+
+const changeLength = () => {
+  console.log(document.getElementById('length').value);
+  nl.length = document.getElementById('length').value;
+  console.log(nl.length);
+}
+const newArray = () => {
+  parent.textContent = '';
+  nl.generateNodeList();
+}
+// Events 
+
+document.querySelector('#sortBtn').addEventListener('click', selectAlgo);
+
+document.querySelector('#lengthBtn').addEventListener('click', changeLength);
+document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
+document.querySelector('#newArrBtn').addEventListener('click', newArray);
+

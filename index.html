@@ -2,16 +2,18 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Display bitch</title>
+    <title>Sorting algorithm visualizer</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type='module' src="../scripts/main.js" charset="utf-8"></script>
 
   </head>
   <body>
-      <header id='commands'>
-        <!-- bloque contenedor de los comandos del programa, como el algoritmo
-        a utilizar, longitud del array, velocidad de reproduccion -->
-        <h2>Choose your type</h2>
+    <header id='commands'>
+      <!-- bloque contenedor de los comandos del programa, como el algoritmo
+      a utilizar, longitud del array, velocidad de reproduccion -->
+      <div id="algoSelector">
+        <h2> Sorting algorithm visualizer</h2>
+        <label>Choose your Algorithm!</label>
         <select id="sortAlgos">
           <option value="quickSort"> QuickSort </option>
           <option value="bubbleSort"> Bubble </option>
@@ -20,10 +22,23 @@
           <option value="insertSort"> Insertion </option>
         </select>
         <button id='sortBtn' class="btn" >Sort</button>
-        <button id="shuffleBtn" class="btn">shuffle</button>
-
-      </header>
-      <div id="display">
       </div>
+
+
+      <div id="arrayEditor">
+        <h4>Change the array</h4>
+        <button id="shuffleBtn" class="btn">Shuffle</button>
+        <label>How many items?</label>
+        <input type="range" id="length" name="length" min=15 max=80>
+        <button id="lengthBtn" class="btn">Change length</button>
+        <button id="shuffleBtn" class="btn">Shuffle</button>
+        <label>New array</label>
+        <button id='newArrBtn' class="btn" >Now!</button>
+      </div>
+    </header>
+    
+    <main>
+      <div id="display"></div>
+    </main>
   </body>
 </html>

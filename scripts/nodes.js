@@ -5,12 +5,13 @@ class NodeList {
 	/*
 		Class that comprises the methods to iterate over the list
 	*/
-	constructor(parent, length, random=false) {
+	constructor(parent, length, random) {
 
 		this.parent = parent; //parent is HTML element
 		this.maxRange = 350;
 		this.minRange = 40;
-		this.generateNodeList(length, random);
+		this.length = length;
+		this.generateNodeList(random);
 		this.parent.style.height = `${this.maxRange +50}px`;
 
 	}
@@ -20,14 +21,14 @@ class NodeList {
 	//####################################################################
 	//####################################################################
 
-	generateNodeList(length, random) {
+	generateNodeList(random=true) {
 		// constructor function that generates a list of nodes
 		let arr, nodeArr = [];
 		if (random) {
-			arr = this.createRandomArray(length);
+			arr = this.createRandomArray(this.length);
 		}
 		else {
-			arr = this.createLinearArray(length);
+			arr = this.createLinearArray(this.length);
 		}
 		for (var i = 0; i < arr.length; i++) {
 			nodeArr.push(new Node(arr[i], i, this.parent));
@@ -93,6 +94,12 @@ class NodeList {
 		for (var i = 0; i < this.list.length; i++) {
 			this.list[i].inItsPlace();
 		}
+	}
+	isSorted() {
+		for (var i = 0; i < this.list.length -1; i++) {
+			if (this.list[i] > this.list[i +1]) {return false}
+		}
+		return true;
 	}
 }
 
