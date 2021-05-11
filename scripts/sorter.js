@@ -183,13 +183,13 @@ class Sorter {
       }
       //switch the values around if the indices havent crossed
       if (start < end) {
-        console.log(`swapping ${arr[start].value} => ${arr[end].value}`);
         await this.prettySwap(arr[start], arr[end]);
       }
     }
     // switch the position of the pivot to be in the pos end index
-    pivot.unSelect();
     this.prettySwap(pivot, arr[end]);
+    pivot.unSelect();
+    await this.sleep();
     return end; 
   }
 
