@@ -29,11 +29,15 @@
         <h4>Change the array</h4>
         <label>How many items?</label>
         <input type="range" id="length" name="length" min=15 max=30>
-        <button id="lengthBtn" class="btn">Change length</button>
-        <label>New array</label>
-        <button id='newArrBtn' class="btn" >Now!</button>
+        <label>Values</label>
+        <select id="valueType">
+          <option value='random'> Random values </option>
+          <option value='constInc'> Constant increment </option>
+        </select>
         <label>Shuffle this array</label>
         <button id="shuffleBtn" class="btn">Shuffle</button>
+        <label>New array</label>
+        <button id='newArrBtn' class="btn" >Now!</button>
       </div>
     </header>
 

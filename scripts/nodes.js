@@ -23,6 +23,7 @@ class NodeList {
 
 	generateNodeList(random=true) {
 		// constructor function that generates a list of nodes
+		console.log('length '+this.length);
 		let arr, nodeArr = [];
 		if (random) {
 			arr = this.createRandomArray(this.length);
@@ -30,10 +31,12 @@ class NodeList {
 		else {
 			arr = this.createLinearArray(this.length);
 		}
+		console.log('arr ' + arr.length);
 		for (var i = 0; i < arr.length; i++) {
 			nodeArr.push(new Node(arr[i], i, this.parent));
 		}
 		this.list = nodeArr;
+		console.log('nodearr '+nodeArr.length);
 		this.shuffleList();
 	}
 
@@ -100,6 +103,14 @@ class NodeList {
 			if (this.list[i] > this.list[i +1]) {return false}
 		}
 		return true;
+	}
+	printItems() {
+		let strOut = `long: ${this.list.length}; items:`;
+		for (var i = 0; i < this.list.length; i++) {
+			strOut += this.list[i].value + ', '
+		}
+
+		console.log(strOut);
 	}
 }
 

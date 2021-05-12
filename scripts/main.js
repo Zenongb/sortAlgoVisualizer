@@ -4,7 +4,7 @@ import {Sorter} from '/scripts/sorter.js'
 // init orders
 const parent = document.getElementById('display');
 
-   
+
 
 let nl = new NodeList(parent, 20),
     sorter = new Sorter(60, nl);
@@ -43,19 +43,27 @@ const shuffleCall = () => {
 }
 
 const changeLength = () => {
-  console.log(document.getElementById('length').value);
-  nl.length = document.getElementById('length').value;
-  console.log(nl.length);
+  let newValue = parseInt(document.getElementById('length').value);
+  nl.length = newValue;
 }
+const getValueType = () => {
+  let type = document.getElementById('valueType');
+  switch (type.value) {
+    case 'random':
+      return true;
+    case 'constInc':
+      return false;
+  }
+}
+
 const newArray = () => {
   parent.textContent = '';
-  nl.generateNodeList();
+  changeLength();
+  nl.generateNodeList(getValueType());
 }
-// Events 
+// Events
 
 document.querySelector('#sortBtn').addEventListener('click', selectAlgo);
 
-document.querySelector('#lengthBtn').addEventListener('click', changeLength);
 document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
 document.querySelector('#newArrBtn').addEventListener('click', newArray);
-

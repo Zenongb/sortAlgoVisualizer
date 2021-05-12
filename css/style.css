@@ -29,9 +29,10 @@ header {
 
 #algoSelector {
 	position: absolute;
-	top: 35px;
+	top: 0px;
 	left: 0px;
 	margin-left: 3%;
+	margin-top: 3%;
 }
 #arrayEditor {
 	position: absolute;
@@ -45,7 +46,7 @@ header {
 	margin-bottom: 10px;
 }
 #shuffleBtn {
-
+	
 }
 
 body {
