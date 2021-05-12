@@ -6,7 +6,7 @@ const parent = document.getElementById('display');
 
 
 
-let nl = new NodeList(parent, 20),
+let nl = new NodeList(parent, 40),
     sorter = new Sorter(60, nl);
 
 

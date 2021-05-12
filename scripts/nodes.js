@@ -23,20 +23,19 @@ class NodeList {
 
 	generateNodeList(random=true) {
 		// constructor function that generates a list of nodes
-		console.log('length '+this.length);
-		let arr, nodeArr = [];
+		let arr, nodeArr = [],
+				width = this.getBarWidth()
 		if (random) {
 			arr = this.createRandomArray(this.length);
 		}
 		else {
 			arr = this.createLinearArray(this.length);
 		}
-		console.log('arr ' + arr.length);
+
 		for (var i = 0; i < arr.length; i++) {
-			nodeArr.push(new Node(arr[i], i, this.parent));
+			nodeArr.push(new Node(arr[i], i, this.parent, width));
 		}
 		this.list = nodeArr;
-		console.log('nodearr '+nodeArr.length);
 		this.shuffleList();
 	}
 
@@ -59,6 +58,11 @@ class NodeList {
 		return arr;
 	}
 
+
+getBarWidth () {
+	let totalWidth = this.parent.offsetWidth;
+	return totalWidth / this.length;
+}
 	generateArr() {
 		let arr = []
 		for (var i = 0; i < this.list.length; i++) {
@@ -125,7 +129,7 @@ class Node {
 	This class contains the value, index, HTML element that comprises it, and the  methods
 	to handle interactions between the sorting algorithms and the HTML element itself
 	*/
-	constructor(value, id, parent) {
+	constructor(value, id, parent, width) {
 
 		this.value = value;
 		this.id = id;
@@ -133,9 +137,12 @@ class Node {
 		// DOM handlers
 		this.HTMLElement = document.createElement('div');
 		this.HTMLElement.classList.add('idle', 'bar');
+		this.setWidth(width);
 		this.parent.appendChild(this.HTMLElement);
+
 		this.setHeight();
 	}
+
 	// HTML HANDLING
 	// status
 	comparing() {
@@ -172,5 +179,12 @@ class Node {
 	}
 	setHeight(){
 		this.HTMLElement.style.height = `${this.value}px`
+	}
+
+	//width
+	setWidth(width) {
+		this.HTMLElement.style.width = `${Math.floor(width * 0.8)}px`
+		this.HTMLElement.style.margin = `0px ${Math.floor(width * 0.2)}px`
+
 	}
 }
