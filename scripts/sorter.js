@@ -59,9 +59,9 @@ class Sorter {
   }
   //######################################################################
   //######################################################################
-  
+
   async  selectionSort() {
-    let min = await this.isMin(this.nl.list[0]), 
+    let min = await this.isMin(this.nl.list[0]),
         j = 0;
 
     while (j < this.nl.list.length) {
@@ -69,7 +69,7 @@ class Sorter {
         if (await this.biggerThan(min, this.nl.list[i])) {
           min.unSelect();
           min = await this.isMin(this.nl.list[i]);
-          
+
         }
       }
       await this.sleep();
@@ -147,10 +147,9 @@ class Sorter {
         max = range[1];
     for (var j = min; j <= max; j++) {
       this.nl.list[j].updateValue(newValues[k++].value);
-      this.nl.list[j].comparing();
+      this.nl.list[j].compared();
       await this.sleep()
     }
-    return [min, max];
   }
 
   switchState(range, comparing) {
@@ -167,7 +166,7 @@ class Sorter {
   //######################################################################
 
   async partition(arr, start, end) {
-    let pivotIndex = start, 
+    let pivotIndex = start,
         pivot = arr[pivotIndex];
     pivot.selected();
     while (start < end) {
@@ -190,7 +189,7 @@ class Sorter {
     this.prettySwap(pivot, arr[end]);
     pivot.unSelect();
     await this.sleep();
-    return end; 
+    return end;
   }
 
   async quickSort(arr, start, end) {
@@ -200,7 +199,7 @@ class Sorter {
       await this.quickSort(arr, pIndex + 1, end);
     }
   }
-  
+
   async prettySwap(n1, n2) {
     n1.comparing();
     n2.comparing();
@@ -210,7 +209,7 @@ class Sorter {
     n2.compared();
     await this.sleep();
 
-  }  
+  }
 
   //######################################################################
   //######################################################################
