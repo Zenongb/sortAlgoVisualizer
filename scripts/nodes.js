@@ -1,5 +1,9 @@
 export {Node, NodeList};
 
+//######################################################################
+//##################    NODE LIST OBJECT   #############################
+//######################################################################
+//######################################################################
 
 class NodeList {
 	/*
@@ -19,6 +23,7 @@ class NodeList {
 
 
 	//####################################################################
+	//################   LIST GENERATION FUNCS   #########################
 	//####################################################################
 
 	generateNodeList(random=true) {
@@ -57,30 +62,6 @@ class NodeList {
 		}
 		return arr;
 	}
-
-
-getBarWidth () {
-	let totalWidth = this.parent.offsetWidth;
-	return totalWidth / this.length;
-}
-	generateArr() {
-		let arr = []
-		for (var i = 0; i < this.list.length; i++) {
-			 let dict = {value: this.list[i].value,
-			 						 id: this.list[i].id};
-
-			 arr[i] = dict;
-		}
-		return arr;
-	}
-	getNodeById(id) {
-		for (var i = 0; i < this.list.length; i++) {
-			if(this.list[i].id == id) {
-				return this.list[i];
-			}
-		}
-		return undefined;
-	}
 	shuffleList() {
 		// body...
 		this.allReUsed();
@@ -91,6 +72,29 @@ getBarWidth () {
 			this.list[i].updateValue(this.list[j].value);
 			this.list[j].updateValue(temp);
 		}
+	}
+	getBarWidth () {
+		let totalWidth = this.parent.offsetWidth;
+		return totalWidth / this.length;
+	}
+	//####################################################################
+	//#############   LIST INTERACTION FUNCS   ###########################
+	//####################################################################
+
+	generateArr() {
+		// Function used in the merge sort algorithm, it creates an array of
+		// objects that has each node value & it's id, so the merge sort
+		// algorithm can create multiple lists of these objects without
+		// having memory problems
+		
+		let arr = []
+		for (var i = 0; i < this.list.length; i++) {
+			 let dict = {value: this.list[i].value,
+			 						 id: this.list[i].id};
+
+			 arr[i] = dict;
+		}
+		return arr;
 	}
 	allReUsed() {
 		for (var i = 0; i < this.list.length; i++) {
@@ -120,14 +124,15 @@ getBarWidth () {
 
 
 //######################################################################
-//######################################################################
+//#######################   NODE OBJECT   ##############################
 //######################################################################
 //######################################################################
 
 class Node {
 	/*
-	This class contains the value, index, HTML element that comprises it, and the  methods
-	to handle interactions between the sorting algorithms and the HTML element itself
+	This class contains the value, index, HTML element that comprises it,
+	and the  methods to handle interactions between the sorting algorithms
+	and the HTML element itself
 	*/
 	constructor(value, id, parent, width) {
 
@@ -143,7 +148,10 @@ class Node {
 		this.setHeight();
 	}
 
-	// HTML HANDLING
+	//####################################################################
+	//################   HTML HANDLING FUNCS   ###########################
+	//####################################################################
+
 	// status
 	comparing() {
 		this.changeStatus('idle', 'comparing');
