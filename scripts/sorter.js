@@ -1,19 +1,18 @@
 export {Sorter}
 
-/*
-Class that contains the functions related to the sorting of the
-algorithms
-
-*/
-
 class Sorter {
+  /*
+  Class that contains the functions related to the sorting of the
+  algorithms
 
+  */
   constructor (time, nl) {
     this.time = time;
     this.nl = nl;
   }
-//######################################################################
-//######################################################################
+  //####################################################################
+  //##################   BUBBLE SORT ALGORITHM   #######################
+  //####################################################################
 
   async bubbleSort() {
     let noChange;
@@ -38,8 +37,10 @@ class Sorter {
       }
     }
   }
-  //######################################################################
-  //######################################################################
+  //####################################################################
+  //################   INSERTION SORT ALGORITHM   ######################
+  //####################################################################
+
   async insertionSort() {
     let temp, j, needSort = false;
     for (let i = 1; i < this.nl.list.length; i++) {
@@ -57,8 +58,9 @@ class Sorter {
     }
     this.nl.allCompared();
   }
-  //######################################################################
-  //######################################################################
+  //####################################################################
+  //################   SELECTION SORT ALGORITHM   ######################
+  //####################################################################
 
   async  selectionSort() {
     let min = await this.isMin(this.nl.list[0]),
@@ -86,8 +88,9 @@ class Sorter {
     await this.sleep()
     return n
   }
-  //######################################################################
-  //######################################################################
+  //####################################################################
+  //###################   MERGE SORT ALGORITHM   #######################
+  //####################################################################
 
   async mergeSort(arr) {
     if (arr.length <= 1) {
@@ -119,6 +122,7 @@ class Sorter {
       outArr[k++] = r[j++];
     }
 
+    // This is where the interactive part of the algorithm starts
     let range = this.getRange(outArr);
     this.switchState(range, true);
     await this.changeSomeValues(outArr, range);
@@ -161,9 +165,9 @@ class Sorter {
         }
   }
 
-
-  //######################################################################
-  //######################################################################
+  //####################################################################
+  //###################   QUICK SORT ALGORITHM   #######################
+  //####################################################################
 
   async partition(arr, start, end) {
     let pivotIndex = start,
@@ -172,12 +176,10 @@ class Sorter {
     while (start < end) {
       // find a value greater than pivot
       while (((await this.biggerThan(pivot, arr[start])) || (pivot.value == arr[start].value)) && (start < end)) {
-        //console.log(`changing start: ${start} e:${end}`);
         start++;
       }
       //find a value smaller than pivot
       while (await this.biggerThan(arr[end], pivot))  {
-        //console.log(`s:${start} changing end:${end}`);
         end--;
       }
       //switch the values around if the indices havent crossed
@@ -208,13 +210,11 @@ class Sorter {
     n1.compared();
     n2.compared();
     await this.sleep();
-
   }
 
-  //######################################################################
-  //######################################################################
-
-
+  //####################################################################
+  //####################   GENERAL FUNCTIONS   #########################
+  //####################################################################
 
   swap(n1, n2){
     let temp = n1.value;
@@ -238,8 +238,6 @@ class Sorter {
     await this.sleep(out);
     return out;
   }
-
-
 
   async sleep(x) {
     return new Promise(resolve => {

@@ -1,17 +1,19 @@
 import {Node, NodeList} from '/scripts/nodes.js';
 import {Sorter} from '/scripts/sorter.js'
 
+//#############
 // init orders
+//#############
+
 const parent = document.getElementById('display');
-
-
-
 let nl = new NodeList(parent, 40),
     sorter = new Sorter(60, nl);
 
 
-
+//#####################################
 // sort selection & execution functions
+//#####################################
+
 const selectAlgo = () => {
   let selector = document.getElementById('sortAlgos');
   switch (selector.value) {
@@ -36,12 +38,13 @@ const mergeCall = async () => {
   arr = await sorter.mergeSort(arr);
 }
 
-
+//#####################
 // Array edit functions
+//#####################
+
 const shuffleCall = () => {
   nl.shuffleList();
 }
-
 const changeLength = () => {
   let newValue = parseInt(document.getElementById('length').value);
   nl.length = newValue;
@@ -55,15 +58,15 @@ const getValueType = () => {
       return false;
   }
 }
-
 const newArray = () => {
   parent.textContent = '';
   changeLength();
   nl.generateNodeList(getValueType());
 }
+//#######
 // Events
+//#######
 
 document.querySelector('#sortBtn').addEventListener('click', selectAlgo);
-
 document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
 document.querySelector('#newArrBtn').addEventListener('click', newArray);
