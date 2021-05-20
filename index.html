@@ -8,41 +8,57 @@
 
   </head>
   <body>
-    <header id='commands'>
+    <header>
       <!-- bloque contenedor de los comandos del programa, como el algoritmo
       a utilizar, longitud del array, velocidad de reproduccion -->
+      <h2> Sorting algorithm visualizer</h2>
       <div id="algoSelector">
-        <h2> Sorting algorithm visualizer</h2>
-        <label>Choose your Algorithm!</label>
-        <select id="sortAlgos">
-          <option value="quickSort"> QuickSort </option>
-          <option value="bubbleSort"> Bubble </option>
-          <option value="selectionSort"> Selection </option>
-          <option value="mergeSort"> Merge </option>
-          <option value="insertSort"> Insertion </option>
-        </select>
-        <button id='sortBtn' class="btn" >Sort</button>
+        <div class="selector">
+          <label>Choose your Algorithm!</label>
+          <select id="sortAlgos">
+            <option value="quickSort"> QuickSort </option>
+            <option value="bubbleSort"> Bubble </option>
+            <option value="selectionSort"> Selection </option>
+            <option value="mergeSort"> Merge </option>
+            <option value="insertSort"> Insertion </option>
+          </select>
+          <button id='sortBtn' class="btn" >Sort</button>
+        </div>
+        <div class="selector">
+          <label>Change speed</label>
+          <input type="range" id="speed" name="speed" min=20 max=200>
+        </div>
       </div>
 
 
       <div id="arrayEditor">
         <h4>Change the array</h4>
-        <label>How many items?</label>
-        <input type="range" id="length" name="length" min=40 max=80>
-        <label>Values</label>
-        <select id="valueType">
-          <option value='random'> Random values </option>
-          <option value='constInc'> Constant increment </option>
-        </select>
-        <label>Shuffle this array</label>
-        <button id="shuffleBtn" class="btn">Shuffle</button>
-        <label>New array</label>
-        <button id='newArrBtn' class="btn" >Now!</button>
+        <div class="selector">
+          <label>How many items?</label>
+          <input type="range" id="length" name="length" min=40 max=80>
+        </div>
+        <div class="selector">
+          <label>Values</label>
+          <select id="valueType">
+            <option value='random'> Random values </option>
+            <option value='constInc'> Constant increment </option>
+          </select>
+        </div>
+        <div class="selector">
+          <label>Shuffle this array</label>
+          <button id="shuffleBtn" class="btn">Shuffle</button>
+        </div>
+        <div class="selector">
+          <label>New array</label>
+          <button id='newArrBtn' class="btn" >Now!</button>
+        </div>
       </div>
     </header>
-
     <main>
       <div id="display"></div>
     </main>
+    <footer>
+      <p>Made with love and mate by <a href="https://www.github.com/zenongb">ZenónGB</a>  &#128516;</p>
+    </footer>
   </body>
 </html>

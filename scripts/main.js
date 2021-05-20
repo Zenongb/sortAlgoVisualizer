@@ -38,6 +38,7 @@ const mergeCall = async () => {
   arr = await sorter.mergeSort(arr);
 }
 
+
 //#####################
 // Array edit functions
 //#####################
@@ -66,7 +67,8 @@ const newArray = () => {
 //#######
 // Events
 //#######
-
+let speedDial = document.getElementById('speed')
+speedDial.addEventListener('change', function() { sorter.time = speedDial.value; });
 document.querySelector('#sortBtn').addEventListener('click', selectAlgo);
 document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
 document.querySelector('#newArrBtn').addEventListener('click', newArray);
