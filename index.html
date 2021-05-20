@@ -13,15 +13,21 @@
       a utilizar, longitud del array, velocidad de reproduccion -->
       <h2> Sorting algorithm visualizer</h2>
       <div id="algoSelector">
-        <label>Choose your Algorithm!</label>
-        <select id="sortAlgos">
-          <option value="quickSort"> QuickSort </option>
-          <option value="bubbleSort"> Bubble </option>
-          <option value="selectionSort"> Selection </option>
-          <option value="mergeSort"> Merge </option>
-          <option value="insertSort"> Insertion </option>
-        </select>
-        <button id='sortBtn' class="btn" >Sort</button>
+        <div class="selector">
+          <label>Choose your Algorithm!</label>
+          <select id="sortAlgos">
+            <option value="quickSort"> QuickSort </option>
+            <option value="bubbleSort"> Bubble </option>
+            <option value="selectionSort"> Selection </option>
+            <option value="mergeSort"> Merge </option>
+            <option value="insertSort"> Insertion </option>
+          </select>
+          <button id='sortBtn' class="btn" >Sort</button>
+        </div>
+        <div class="selector">
+          <label>Change speed</label>
+          <input type="range" id="speed" name="speed" min=20 max=200>
+        </div>
       </div>
 
 
