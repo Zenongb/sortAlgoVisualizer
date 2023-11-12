@@ -26,7 +26,7 @@ class NodeList {
 	//################   LIST GENERATION FUNCS   #########################
 	//####################################################################
 
-	generateNodeList(random=true) {
+	generateNodeList(random=false) {
 		// constructor function that generates a list of nodes
 		let arr, nodeArr = [],
 				width = this.getBarWidth()
@@ -103,7 +103,7 @@ class NodeList {
 	}
 	allCompared() {
 		for (var i = 0; i < this.list.length; i++) {
-			this.list[i].inItsPlace();
+			this.list[i].sorted();
 		}
 	}
 	isSorted() {
@@ -159,7 +159,7 @@ class Node {
 	compared() {
 		this.changeStatus('comparing', 'idle');
 	}
-	inItsPlace () {
+	sorted () {
 		this.HTMLElement.classList.remove('selected');
 		this.HTMLElement.classList.add('compared');
 	}

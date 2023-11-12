@@ -26,12 +26,12 @@ class Sorter {
           noChange = false;
         }
         if (j == this.nl.list.length-i-2) {
-          this.nl.list[j+1].inItsPlace();
+          this.nl.list[j+1].sorted();
         }
       }
       if (noChange) {
         for (var k = 0; k < j; k++) {
-          this.nl.list[k].inItsPlace();
+          this.nl.list[k].sorted();
         }
         break;
       }
@@ -42,7 +42,7 @@ class Sorter {
   //####################################################################
 
   async insertionSort() {
-    let temp, j, needSort = false;
+    let j, needSort = false;
     for (let i = 1; i < this.nl.list.length; i++) {
       if (await this.biggerThan(this.nl.list[i-1], this.nl.list[i])) {
         needSort = true;
@@ -76,7 +76,7 @@ class Sorter {
       }
       await this.sleep();
       this.swap(this.nl.list[j], min);
-      this.nl.list[j].inItsPlace();
+      this.nl.list[j].sorted();
       await this.sleep();
       min.unSelect();
       min = await this.isMin(this.nl.list[++j]);
