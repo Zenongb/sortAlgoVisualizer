@@ -1,5 +1,5 @@
-import {Node, NodeList} from '/scripts/nodes.js';
-import {Sorter} from '/scripts/sorter.js'
+import {NodeList} from '/src/nodes.js';
+import {Sorter} from '/src/sorter.js'
 
 //#############
 // init orders
