@@ -5,19 +5,20 @@
   --secondary: #005B41;
   --background: #0F0F0F;
   --detail: #232D3F;
+  /* base config */
   color: white;
+	font-family: sans-serif;
 }
 
-* {
+body {
 	margin: 0;
-	font-family: sans-serif;
 }
 
 label {
 	font-size: 1em;
 }
-/* header styling */
 
+/* header styling */
 header {
 	/*position: relative;*/
 	display: flex;
@@ -85,7 +86,7 @@ main {
 	background-color: #cf0000;
 }
 .compared {
-	background-color: #49912F;
+	background-color: var(--secondary);
 }
 .selected {
 	background-color: #1cc5dc;
