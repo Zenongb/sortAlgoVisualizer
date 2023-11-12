@@ -1,13 +1,12 @@
-/*
-	color palette:
-	base: f5f7b2; creamy cream
-	base2: E0DA96; brown cream
-	outlayer1: 1cc5dc;  lightblue
-	outlayer2: 890596;	purple
-	outlayer3: cf0000;	red
-	outlayer4: 49912F;  pretty solid green
-	outlayer5: 777856;  good gray
-*/
+
+:root {
+  /* colors declaration */
+  --primary: #008170;
+  --secondary: #005B41;
+  --background: #0F0F0F;
+  --detail: #232D3F;
+  color: white;
+}
 
 * {
 	margin: 0;
@@ -24,8 +23,8 @@ header {
 	display: flex;
 	justify-content: space-between;
 	height: auto;
-	border-bottom: solid 1px #777856;
-	background-color: #E0DA96;
+	border-bottom: solid 1px var(--secondary);
+	background-color: var(--detail);
 	padding: 3vh;
 }
 
@@ -49,12 +48,9 @@ header > h2 {
 .selector {
 	margin-top: 1%;
 }
-#shuffleBtn {
-
-}
 
 body {
-	background-color: #f5f7b2;
+	background-color: var(--background);
 }
 
 
@@ -82,7 +78,7 @@ main {
 	vertical-align: top;
 }
 .idle {
-	background-color: #777856;
+	background-color: var(--primary);
 }
 
 .comparing {
