@@ -6,8 +6,8 @@ import {Sorter} from '/src/sorter.js'
 //#############
 
 const parent = document.getElementById('display');
-let nl = new NodeList(parent, 40),
-    sorter = new Sorter(60, nl);
+let nl = new NodeList(parent, 25),
+    sorter = new Sorter(80, nl);
 
 
 //#####################################
@@ -68,7 +68,7 @@ const newArray = () => {
 // Events
 //#######
 let speedDial = document.getElementById('speed')
-speedDial.addEventListener('change', function() { sorter.time = speedDial.value; });
+speedDial.addEventListener('change', () => { sorter.time = 110 - speedDial.value });
 document.querySelector('#sortBtn').addEventListener('click', selectAlgo);
 document.querySelector('#shuffleBtn').addEventListener('click', shuffleCall);
 document.querySelector('#newArrBtn').addEventListener('click', newArray);
