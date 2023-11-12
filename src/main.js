@@ -7,7 +7,7 @@ import {Sorter} from '/src/sorter.js'
 
 const parent = document.getElementById('display');
 let nl = new NodeList(parent, 25),
-    sorter = new Sorter(80, nl);
+    sorter = new Sorter(35, nl);
 
 
 //#####################################
