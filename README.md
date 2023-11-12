@@ -20,7 +20,7 @@ The current sorting algorithms are:
 
 Usage
 ------
-Go to the hosting site (put link HERE) & start sorting!
+Try it out [here](https://sort-alogrithm-visualizer.onrender.com)!
 
 
 
